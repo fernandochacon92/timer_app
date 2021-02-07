@@ -17,7 +17,7 @@ from datetime import datetime
 
 
 import time
-import winsound
+#import winsound
 
 st.set_page_config(
      page_title="Timer workout",
@@ -70,11 +70,11 @@ def circlek (valuesk):
 
 if st.button('Start'):
     
-    #time.sleep(10)
+    time.sleep(10)
     
-    winsound.Beep(800,1000)
-    winsound.Beep(800,1000)
-    winsound.Beep(800,1000)
+    #winsound.Beep(800,1000)
+    #winsound.Beep(800,1000)
+    #winsound.Beep(800,1000)
 
     for completed_rounds in range(1,rounds_1):
         
@@ -101,7 +101,7 @@ if st.button('Start'):
         
 
 
-    winsound.Beep(800,1000)
+    #winsound.Beep(800,1000)
     st.balloons()
 #winsound.MessageBeep()
 #winsound.PlaySound('SystemExclamation', winsound.SND_ALIAS)
