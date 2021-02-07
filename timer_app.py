@@ -9,20 +9,15 @@
 
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
 import numpy as np
 import os
 import sys
-import plotly.graph_objects as go
-import plotly.express as px
 
 from datetime import datetime
 from matplotlib.dates import DateFormatter
 from plotly.subplots import make_subplots
 
 import time
-from stopwatch import Stopwatch
-
 import winsound
 
 st.set_page_config(
