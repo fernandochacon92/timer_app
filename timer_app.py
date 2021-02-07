@@ -14,8 +14,7 @@ import os
 import sys
 
 from datetime import datetime
-from matplotlib.dates import DateFormatter
-from plotly.subplots import make_subplots
+
 
 import time
 import winsound
