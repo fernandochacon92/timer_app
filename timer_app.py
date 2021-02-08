@@ -82,7 +82,7 @@ if st.button('Start'):
             time.sleep(workout_time)
             workout_bar.progress(percent_complete_work + 1)
             
-            if percent_complete_work == 99:
+            #if percent_complete_work == 99:
                 #winsound.Beep(800,1000)
 
         for percent_complete_pause in range(100):
