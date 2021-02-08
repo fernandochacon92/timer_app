@@ -83,14 +83,14 @@ if st.button('Start'):
             workout_bar.progress(percent_complete_work + 1)
             
             if percent_complete_work == 99:
-                winsound.Beep(800,1000)
+                #winsound.Beep(800,1000)
 
         for percent_complete_pause in range(100):
             time.sleep(pause_time)
             pause_bar.progress(percent_complete_pause + 1)
             
             if percent_complete_pause == 99:
-                winsound.Beep(800,1000)
+                #winsound.Beep(800,1000)
         #st.write(rounds)
         #st.write(completed_rounds)
         rounds_bar.progress((completed_rounds) * 1/rounds)
