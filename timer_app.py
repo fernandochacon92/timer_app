@@ -1,6 +1,9 @@
 #Github
 #Branch circle
 #cd Documents\Fernando\Work\Python\timer\timer_app
+#streamlit run timer_app.py
+
+#git add . #git commit -m "circle" #git push origin circle
 
 #C:\Users\ThinkPad X1 Carbon\Documents\Fernando\Work\Python\timer>streamlit run timer_app.py
 
@@ -17,6 +20,11 @@ import numpy as np
 import os
 import sys
 
+import matplotlib.pyplot as plt
+import plotly.graph_objects as go
+import plotly.express as px
+from plotly.subplots import make_subplots
+
 from datetime import datetime
 
 
@@ -25,89 +33,96 @@ import time
 
 st.set_page_config(
      page_title="Timer workout",
-     page_icon=":sunny:",
+     page_icon=":muscle:",
      initial_sidebar_state="expanded",
      layout="centered",
  )
 
-#markdown cheatsheet
-st.title('Workout Timer Circle')
+st.markdown("<h1 style='text-align: center; color: Black;'>Workout Timer</h1>", unsafe_allow_html=True)
 
-workout = st.slider('Work time in seconds',0, 100, 45)
+workout = st.sidebar.slider('Work time in seconds',0, 100, 45)
 
-pause = st.slider('Break time in seconds',0, 100, 15)
+pause = st.sidebar.slider('Break time in seconds',0, 100, 15)
 
-rounds = st.slider('Rounds',0, 20, 10)
+rounds = st.sidebar.slider('Rounds',0, 20, 10) 
 
-rounds_1=rounds+1
+rounds_str= str(rounds)
 
-st.markdown('**Work**.')
-workout_bar = st.progress(0)
-
-st.markdown('**Break**.')
-pause_bar = st.progress(0)
-
-st.markdown('**Rounds**.')
-rounds_bar = st.progress(0)
+rounds_bar = st.progress(100)
 
 workout_time = workout/100
 
 pause_time = pause/100
 
-round_time = 0.1
 
-values = [1,2]
-
-
-def circlek (valuesk):
-    labels = ['Oxygen','Hydrogen']
-
-    fig = go.Figure(data=[go.Pie(labels=labels, values=valuesk, hole=.9)])
-
-    circle=st.plotly_chart(fig, use_container_width=True)
-    
-    return
-
-#st.write(workout_time)
-#st.write(pause_time)
-
-
-if st.button('Start'):
-    
-    time.sleep(10)
-    
-    #winsound.Beep(800,1000)
-    #winsound.Beep(800,1000)
-    #winsound.Beep(800,1000)
-
-    for completed_rounds in range(1,rounds_1):
-        
-        for percent_complete_work in range(100):
-            time.sleep(workout_time)
-            workout_bar.progress(percent_complete_work + 1)
-            
-            #if percent_complete_work == 99:
-                #winsound.Beep(800,1000)
-            
-
-        for percent_complete_pause in range(100):
-            time.sleep(pause_time)
-            pause_bar.progress(percent_complete_pause + 1)
-            
-            #if percent_complete_pause == 99:
-                #winsound.Beep(800,1000)
-        #st.write(rounds)
-        #st.write(completed_rounds)
-        rounds_bar.progress((completed_rounds) * 1/rounds)
-        #st.write((completed_rounds)  * 1/rounds)
-        
-        #rounds_bar.progress((completed_rounds) * rounds*10)
-        #st.write((completed_rounds) * rounds*10)
-        
-
-
-    #winsound.Beep(800,1000)
-    st.balloons()
 #winsound.MessageBeep()
 #winsound.PlaySound('SystemExclamation', winsound.SND_ALIAS)
 #winsound.PlaySound("SystemQuestion", winsound.SND_ALIAS)  
+
+
+values = [100,0]
+
+colors_1= ['rgb(33, 75, 99)',  'rgb(151, 179, 100)']
+
+colors_2= ['rgb(56, 75, 126)', 'rgb(18, 36, 37)']
+
+trace= go.Pie( values=values, hole=.8,showlegend=False, sort=False, marker_colors=colors_1, textinfo='none', hoverinfo='skip')
+
+data1=[trace]
+
+fig = go.Figure(data=data1)
+
+fig.update_layout(annotations=[dict(text='READY!', x=0.5, y=0.5, font_size=20, showarrow=False)])
+
+circle=st.plotly_chart(fig, use_container_width=True)
+
+def animate_1(i):  # update the y values (every 1000ms)
+    
+    values= [t1,t2]
+    trace= go.Pie( values=values, hole=.8, showlegend=False, sort=False, marker_colors=colors_1, textinfo='none',hoverinfo='skip')
+    data1=[trace]
+    fig = go.Figure(data=data1)
+    fig.update_layout(annotations=[dict(text='GO! - '+ round_str+"/"+rounds_str,
+                                        x=0.5, y=0.5, font_size=20, showarrow=False)])
+    
+    circle.plotly_chart(fig)
+    
+def animate_2(i):  # update the y values (every 1000ms)
+    
+    values= [t1,t2]
+    trace= go.Pie( values=values, hole=.8, showlegend=False, sort=False, marker_colors=colors_2, textinfo='none',hoverinfo='skip')
+    data1=[trace]
+    fig = go.Figure(data=data1)
+    fig.update_layout(annotations=[dict(text='BREAK -' + round_str+"/"+rounds_str,
+                                        x=0.5, y=0.5, font_size=20, showarrow=False)])
+    
+    circle.plotly_chart(fig)
+
+if st.button('Start Workout'):
+    
+    for j in range(rounds):
+
+        rounds_bar.progress((j+1)/rounds)
+        
+        round_str= str(j+1)
+
+        for i in range(101):
+            t1=100-i
+            t2=100-t1
+            animate_1(i)
+            time.sleep(workout_time)
+
+        if j < rounds-1:
+        
+            for i in range(101):
+                t1=100-i
+                t2=100-t1
+                animate_2(i)
+                time.sleep(pause_time)
+                
+    fig.update_layout(annotations=[dict(text='Well Done',
+                                        x=0.5, y=0.5, font_size=20, showarrow=False)])
+    circle.plotly_chart(fig)
+
+    st.balloons()  
+    
