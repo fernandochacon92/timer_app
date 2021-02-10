@@ -1,3 +1,7 @@
+#Github
+#Branch circle
+#cd Documents\Fernando\Work\Python\timer\timer_app
+
 #C:\Users\ThinkPad X1 Carbon\Documents\Fernando\Work\Python\timer>streamlit run timer_app.py
 
 
@@ -27,7 +31,7 @@ st.set_page_config(
  )
 
 #markdown cheatsheet
-st.title('Workout Timer')
+st.title('Workout Timer Circle')
 
 workout = st.slider('Work time in seconds',0, 100, 45)
 
