@@ -15,19 +15,9 @@
 
 
 import streamlit as st
-import pandas as pd
-import numpy as np
 import os
-import sys
-
 import plotly.graph_objects as go
-import plotly.express as px
-from plotly.subplots import make_subplots
-
-from datetime import datetime
-
-
-import time
+import time 
 #import winsound
 
 st.set_page_config(
@@ -81,7 +71,7 @@ def animate_1(i):  # update the y values (every 1000ms)
     trace= go.Pie( values=values, hole=.8, showlegend=False, sort=False, marker_colors=colors_1, textinfo='none',hoverinfo='skip')
     data1=[trace]
     fig = go.Figure(data=data1)
-    fig.update_layout(annotations=[dict(text='GO! - '+ round_str+"/"+rounds_str,
+    fig.update_layout(annotations=[dict(text='GO! - '+ round_str+"/"+rounds_str ,
                                         x=0.5, y=0.5, font_size=20, showarrow=False)])
     
     circle.plotly_chart(fig)
@@ -119,8 +109,8 @@ if st.button('Start Workout'):
                 animate_2(i)
                 time.sleep(pause_time)
                 
-    fig.update_layout(annotations=[dict(text='Well Done',
-                                        x=0.5, y=0.5, font_size=20, showarrow=False)])
+    fig.update_layout(annotations=[dict(text='Well Done',x=0.5, y=0.5, font_size=20, showarrow=False)])
+    
     circle.plotly_chart(fig)
 
     st.balloons()  
