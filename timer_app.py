@@ -20,7 +20,6 @@ import numpy as np
 import os
 import sys
 
-import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 import plotly.express as px
 from plotly.subplots import make_subplots
