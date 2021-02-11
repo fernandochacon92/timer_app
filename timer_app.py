@@ -18,7 +18,7 @@ import streamlit as st
 import os
 import plotly.graph_objects as go
 import time 
-#import winsound
+from playsound import playsound
 
 st.set_page_config(
      page_title="Timer workout",
@@ -43,12 +43,12 @@ workout_time = workout/100
 
 pause_time = pause/100
 
+#-----------------------------
+if st.button('Sound'):
 
-#winsound.MessageBeep()
-#winsound.PlaySound('SystemExclamation', winsound.SND_ALIAS)
-#winsound.PlaySound("SystemQuestion", winsound.SND_ALIAS)  
+    playsound('Dog.mp3')
 
-
+#----------------------
 values = [100,0]
 
 colors_1= ['rgb(33, 75, 99)',  'rgb(151, 179, 100)']
@@ -84,7 +84,7 @@ def animate_2(i):  # update the y values (every 1000ms)
     fig = go.Figure(data=data1)
     fig.update_layout(annotations=[dict(text='BREAK -' + round_str+"/"+rounds_str,
                                         x=0.5, y=0.5, font_size=20, showarrow=False)])
-    
+
     circle.plotly_chart(fig)
 
 if st.button('Start Workout'):
