@@ -1,3 +1,4 @@
 streamlit==0.75.0
 plotly==4.14.1
 playsound==1.2.2
+gi==3.18.1
