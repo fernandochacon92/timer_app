@@ -29,11 +29,11 @@ st.set_page_config(
 
 st.markdown("<h1 style='text-align: center; color: Black;'>Workout Timer</h1>", unsafe_allow_html=True)
 
-workout = st.sidebar.slider('Work time in seconds',0, 100, 45)
+workout = st.slider('Work time in seconds',0, 100, 45)
 
-pause = st.sidebar.slider('Break time in seconds',0, 100, 15)
+pause = st.slider('Break time in seconds',0, 100, 15)
 
-rounds = st.sidebar.slider('Rounds',0, 20, 10) 
+rounds = st.slider('Rounds',0, 20, 10) 
 
 rounds_str= str(rounds)
 
